@@ -66,7 +66,7 @@ export default function Dashboard() {
     : properties.filter(p => p.favourited)
 
   if (loading) return <div className="loading">Loading properties...</div>
-  if (error) return <div className="error">{error}</div>
+  if (error) return <div className="page-error">{error}</div>
 
   return (
     <div className="dashboard">

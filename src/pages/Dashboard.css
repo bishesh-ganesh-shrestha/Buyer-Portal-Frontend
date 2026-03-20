@@ -131,7 +131,7 @@
   color: #718096;
 }
 
-.error {
+.page-error {
   display: flex;
   justify-content: center;
   align-items: center;
