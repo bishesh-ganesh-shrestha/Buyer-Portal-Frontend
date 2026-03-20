@@ -1,0 +1,89 @@
+.card {
+  background-color: white;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  overflow: hidden;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px;
+  background-color: #ebf8ff;
+}
+
+.property-type {
+  font-size: 12px;
+  font-weight: bold;
+  color: #2b6cb0;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.favourite-btn {
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  color: #cbd5e0;
+  transition: transform 0.2s, color 0.2s;
+  padding: 0;
+}
+
+.favourite-btn:hover {
+  transform: scale(1.2);
+}
+
+.favourite-btn.favourited {
+  color: #e53e3e;
+}
+
+.card-body {
+  padding: 16px;
+}
+
+.property-title {
+  font-size: 18px;
+  color: #1a202c;
+  margin: 0 0 8px 0;
+}
+
+.property-address {
+  font-size: 14px;
+  color: #718096;
+  margin: 0 0 12px 0;
+}
+
+.property-description {
+  font-size: 14px;
+  color: #4a5568;
+  margin: 0 0 16px 0;
+  line-height: 1.5;
+}
+
+.property-details {
+  display: flex;
+  gap: 16px;
+  font-size: 14px;
+  color: #4a5568;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+
+.card-footer {
+  border-top: 1px solid #e2e8f0;
+  padding-top: 12px;
+}
+
+.property-price {
+  font-size: 20px;
+  font-weight: bold;
+  color: #2b6cb0;
+}
