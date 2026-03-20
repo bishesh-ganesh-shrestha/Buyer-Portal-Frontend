@@ -9,7 +9,7 @@ export default function PropertyCard({ property, onToggleFavourite }) {
           className={`favourite-btn ${property.favourited ? 'favourited' : ''}`}
           onClick={() => onToggleFavourite(property)}
         >
-          {property.favourited ? '♥' : '♡'}
+          {'♥'}
         </button>
       </div>
 
