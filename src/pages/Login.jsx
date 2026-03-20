@@ -6,7 +6,7 @@ import './Login.css'
 
 export default function Login() {
   const [isRegister, setIsRegister] = useState(false)
-  const [formData, setFormData] = useState({ name: '', email: '', password: '' })
+  const [formData, setFormData] = useState({ name: '', email: '', password: '', confirm_password: '' })
   const [error, setError] = useState(null)
   const [loading, setLoading] = useState(false)
 
@@ -20,6 +20,9 @@ export default function Login() {
   async function handleSubmit(e) {
     e.preventDefault()
     setError(null)
+
+    if (!validateForm()) return
+
     setLoading(true)
 
     try {
@@ -43,6 +46,36 @@ export default function Login() {
 
   if (token) {
     return <Navigate to="/dashboard" />
+  }
+
+  function validateForm() {
+    if (isRegister) {
+      if (!formData.name || formData.name.trim().split(/\s+/).length < 2) {
+        setError('Please enter your full name (first and last name).')
+        return false
+      }
+      if (/\d/.test(formData.name)) {
+        setError('Full name cannot contain numbers.')
+        return false
+      }
+      if (/[^a-zA-Z\s\-']/.test(formData.name)) {
+        setError('Full name can only contain letters, spaces, hyphens and apostrophes.')
+        return false
+      }
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
+        setError('Please enter a valid email address.')
+        return false
+      }
+      if (formData.password.length < 6) {
+        setError('Password must be at least 6 characters.')
+        return false
+      }
+      if (formData.password !== formData.confirm_password) {
+        setError('Passwords do not match.')
+        return false
+      }
+    }
+    return true
   }
 
   return (
@@ -83,6 +116,17 @@ export default function Login() {
             onChange={handleChange}
             required
           />
+          {isRegister && (
+            <input
+              className="input"
+              type="password"
+              name="confirm_password"
+              placeholder="Confirm Password"
+              value={formData.confirm_password}
+              onChange={handleChange}
+              required
+            />
+          )}
           <button className="button" type="submit" disabled={loading}>
             {loading ? 'Please wait...' : isRegister ? 'Register' : 'Login'}
           </button>
