@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useSearchParams, useNavigate } from 'react-router-dom'
 import axios from 'axios'
 import { useAuth } from '../context/AuthContext'
 import PropertyCard from '../components/PropertyCard'
@@ -9,7 +9,12 @@ export default function Dashboard() {
   const [properties, setProperties] = useState([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
-  const [activeTab, setActiveTab] = useState('all')
+  const [searchParams, setSearchParams] = useSearchParams()
+  const activeTab = searchParams.get('tab') || 'all'
+
+  function handleTabChange(tab) {
+    setSearchParams({ tab })
+  }
 
   const { user, token, logout } = useAuth()
   const navigate = useNavigate()
@@ -83,13 +88,13 @@ export default function Dashboard() {
         <div className="tabs">
           <button
             className={`tab ${activeTab === 'all' ? 'tab-active' : ''}`}
-            onClick={() => setActiveTab('all')}
+            onClick={() => handleTabChange('all')}
           >
             All Properties ({properties.length})
           </button>
           <button
             className={`tab ${activeTab === 'favourites' ? 'tab-active' : ''}`}
-            onClick={() => setActiveTab('favourites')}
+            onClick={() => handleTabChange('favourites')}
           >
             My Favourites ({properties.filter(p => p.favourited).length})
           </button>
