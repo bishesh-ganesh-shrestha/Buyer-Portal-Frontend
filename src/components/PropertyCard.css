@@ -65,19 +65,24 @@
 .favourite-btn {
   background: none;
   border: none;
-  font-size: 24px;
+  font-size: 32px;
   cursor: pointer;
-  color: #8997ac;
-  transition: transform 0.2s, color 0.2s;
+  color: transparent;
+  -webkit-text-stroke: 2px #718096;
+  transition: transform 0.2s, color 0.2s, -webkit-text-stroke 0.2s;
   padding: 0;
+  line-height: 1;
+  flex-shrink: 0;
 }
 
 .favourite-btn:hover {
-  transform: scale(1.2);
+  transform: scale(1.1);
+  -webkit-text-stroke: 2px #e53e3e;
 }
 
 .favourite-btn.favourited {
   color: #e53e3e;
+  -webkit-text-stroke: 2px #e53e3e;
 }
 
 .card-body {
