@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, Navigate } from 'react-router-dom'
 import axios from 'axios'
 import { useAuth } from '../context/AuthContext'
 import './Login.css'
@@ -10,7 +10,7 @@ export default function Login() {
   const [error, setError] = useState(null)
   const [loading, setLoading] = useState(false)
 
-  const { login } = useAuth()
+  const { login, token } = useAuth()
   const navigate = useNavigate()
 
   function handleChange(e) {
@@ -39,6 +39,10 @@ export default function Login() {
     } finally {
       setLoading(false)
     }
+  }
+
+  if (token) {
+    return <Navigate to="/dashboard" />
   }
 
   return (
