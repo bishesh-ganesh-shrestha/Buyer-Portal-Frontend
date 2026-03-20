@@ -3,14 +3,21 @@ import './PropertyCard.css'
 export default function PropertyCard({ property, onToggleFavourite }) {
   return (
     <div className="card">
-      <div className="card-header">
-        <span className="property-type">{property.property_type}</span>
-        <button
-          className={`favourite-btn ${property.favourited ? 'favourited' : ''}`}
-          onClick={() => onToggleFavourite(property)}
-        >
-          {'♥'}
-        </button>
+      <div className="card-image">
+        <img
+          src={property.image_url}
+          alt={property.title}
+          onError={(e) => e.target.src = 'https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=800'}
+        />
+        <div className="card-header">
+          <span className="property-type">{property.property_type}</span>
+          <button
+            className={`favourite-btn ${property.favourited ? 'favourited' : ''}`}
+            onClick={() => onToggleFavourite(property)}
+          >
+            ♥
+          </button>
+        </div>
       </div>
 
       <div className="card-body">
