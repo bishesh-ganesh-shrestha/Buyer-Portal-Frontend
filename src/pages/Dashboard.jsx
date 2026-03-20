@@ -4,6 +4,7 @@ import axios from 'axios'
 import { useAuth } from '../context/AuthContext'
 import PropertyCard from '../components/PropertyCard'
 import './Dashboard.css'
+import Navbar from '../components/Navbar'
 
 export default function Dashboard() {
   const [properties, setProperties] = useState([])
@@ -16,12 +17,12 @@ export default function Dashboard() {
     setSearchParams({ tab })
   }
 
-  const { user, token, logout } = useAuth()
+  const { token } = useAuth()
   const navigate = useNavigate()
 
   useEffect(() => {
     fetchProperties()
-  })
+  }, [])
 
   async function fetchProperties() {
     try {
@@ -70,19 +71,7 @@ export default function Dashboard() {
 
   return (
     <div className="dashboard">
-      <header className="header">
-        <div className="header-left">
-          <h1 className="header-title">🏠 Buyer Portal</h1>
-          <p className="header-subtitle">Find your dream property</p>
-        </div>
-        <div className="header-right">
-          <div className="user-info">
-            <span className="user-name">{user?.name}</span>
-            <span className="user-role">{user?.role}</span>
-          </div>
-          <button className="logout-button" onClick={handleLogout}>Logout</button>
-        </div>
-      </header>
+      <Navbar />
 
       <main className="main">
         <div className="tabs">

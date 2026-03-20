@@ -1,27 +1,33 @@
+import { useNavigate } from 'react-router-dom'
 import './PropertyCard.css'
 
 export default function PropertyCard({ property, onToggleFavourite }) {
+  const navigate = useNavigate()
+
   return (
-    <div className="card">
+    <div className="card" onClick={() => navigate(`/properties/${property.id}`)}>
       <div className="card-image">
         <img
           src={property.image_url}
           alt={property.title}
           onError={(e) => e.target.src = 'https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=800'}
         />
-        <div className="card-header">
-          <span className="property-type">{property.property_type}</span>
+        <span className="property-type">{property.property_type}</span>
+      </div>
+
+      <div className="card-body">
+        <div className="card-title-row">
+          <h3 className="property-title">{property.title}</h3>
           <button
             className={`favourite-btn ${property.favourited ? 'favourited' : ''}`}
-            onClick={() => onToggleFavourite(property)}
+            onClick={(e) => {
+              e.stopPropagation()
+              onToggleFavourite(property)
+            }}
           >
             ♥
           </button>
         </div>
-      </div>
-
-      <div className="card-body">
-        <h3 className="property-title">{property.title}</h3>
         <p className="property-address">📍 {property.address}</p>
         <p className="property-description">{property.description}</p>
 

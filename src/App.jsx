@@ -2,6 +2,7 @@ import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
 import { AuthProvider, useAuth } from './context/AuthContext'
 import Login from './pages/Login'
 import Dashboard from './pages/Dashboard'
+import PropertyDetail from './pages/PropertyDetail'
 
 function ProtectedRoute({ children }) {
   const { token } = useAuth()
@@ -17,6 +18,11 @@ function App() {
           <Route path="/dashboard" element={
             <ProtectedRoute>
               <Dashboard />
+            </ProtectedRoute>
+          } />
+          <Route path="/properties/:id" element={
+            <ProtectedRoute>
+              <PropertyDetail />
             </ProtectedRoute>
           } />
           <Route path="*" element={<Navigate to="/login" />} />

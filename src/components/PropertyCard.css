@@ -4,6 +4,7 @@
   box-shadow: 0 2px 8px rgba(0,0,0,0.08);
   overflow: hidden;
   transition: transform 0.2s, box-shadow 0.2s;
+  cursor: pointer;
 }
 
 .card:hover {
@@ -40,13 +41,23 @@
   background: linear-gradient(to bottom, rgba(0,0,0,0.4), transparent);
 }
 
+.card-title-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
 .property-type {
+  position: absolute;
+  top: 12px;
+  left: 12px;
   font-size: 12px;
   font-weight: bold;
   color: white;
   text-transform: uppercase;
   letter-spacing: 1px;
-  background-color: rgba(0,0,0,0.3);
+  background-color: rgba(0,0,0,0.4);
   padding: 4px 8px;
   border-radius: 4px;
 }
